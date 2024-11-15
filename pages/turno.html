@@ -1,0 +1,100 @@
+<div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top " ng-controller="NavbarController as navCtrl">
+        <div class="container">
+            <div class="navbar-header">
+                <img src="img/logo.png" alt="logo" />
+            </div>
+            <div class="navbar-text" style="position: absolute; left: 50%; transform: translateX(-50%); color: white;font-size: 20px;
+    font-weight: bold;">
+                {{turnoCtrl.titulo}}
+            </div>
+        </div>
+    </nav>
+
+    <div ng-show="turnoCtrl.formularioVisible" style="margin-top: 10rem;">
+        <form name="turnoForm" ng-submit="turnoCtrl.enviarSolicitud()" novalidate>
+            <div class="form-group">
+                <label for="especialidad">Especialidad:</label>
+                <select id="especialidad" class="form-control" ng-model="turnoCtrl.datosTurno.especialidadId"
+                    ng-options="especialidad.id as especialidad.nombre for especialidad in turnoCtrl.especialidades"
+                    ng-change="turnoCtrl.cargarProfesionales(turnoCtrl.datosTurno.especialidadId)">
+                    <option value="">Selecciona una especialidad</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="profesional">Profesional:</label>
+                <select id="profesional" class="form-control" ng-model="turnoCtrl.datosTurno.profesionalId"
+                    ng-options="profesional.id as profesional.nombre for profesional in turnoCtrl.profesionales"
+                    ng-change="turnoCtrl.cargarHorarios(turnoCtrl.datosTurno.profesionalId)">
+                    <option value="">Selecciona un profesional</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="profesional">Horarios del Profesional:</label>
+                <select id="profesional" class="form-control" ng-model="turnoCtrl.datosTurno.horarioSeleccionado"
+                    ng-options="horario for horario in turnoCtrl.horariosDelProfesional"
+                    ng-change="turnoCtrl.habilitarFormulario()">
+                    <option value="">Selecciona un profesional</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input name="nombre" type="text" class="form-control" ng-model="turnoCtrl.datosTurno.nombre"
+                    ng-disabled="turnoCtrl.formularioHabilitado" required />
+                <div ng-show="turnoForm.nombre.$touched && turnoForm.nombre.$invalid" class="text-danger">
+                    El nombre es obligatorio.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="apellido">Apellido:</label>
+                <input name="apellido" type="text" class="form-control" ng-model="turnoCtrl.datosTurno.apellido"
+                    ng-disabled="turnoCtrl.formularioHabilitado" required />
+                <div ng-show="turnoForm.apellido.$touched && turnoForm.apellido.$invalid" class="text-danger">
+                    El Apellido es obligatorio.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="direccion">Dirección:</label>
+                <input name="direccion" type="text" class="form-control" ng-model="turnoCtrl.datosTurno.direccion"
+                    ng-disabled="turnoCtrl.formularioHabilitado" required />
+                <div ng-show="turnoForm.direccion.$touched && turnoForm.direccion.$invalid" class="text-danger">
+                    La Dirección es obligatoria.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="telefono">Teléfono:</label>
+                <input name="telefono" type="text" class="form-control" ng-model="turnoCtrl.datosTurno.telefono"
+                    ng-disabled="turnoCtrl.formularioHabilitado" required />
+                <div ng-show="turnoForm.telefono.$touched && turnoForm.telefono.$invalid" class="text-danger">
+                    El Teléfono es obligatorio.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="comentario">Comentario:</label>
+                <textarea name="comentario" class="form-control" ng-model="turnoCtrl.datosTurno.comentario"
+                    ng-disabled="turnoCtrl.formularioHabilitado"></textarea>
+            </div>
+
+            <button class="btn" type="submit" ng-disabled="turnoForm.$invalid"
+                style="color: white; padding: 10px 20px; border: none; border-radius: 8px; background-color: #2d56ff;">
+                Enviar Solicitud
+            </button>
+            <button class="btn" ui-sref="inicio"
+                style="color: white; padding: 10px 20px; border: none; border-radius: 8px; background-color: #2d56ff;">
+                Volver
+            </button>
+
+        </form>
+    </div>
+
+    <div ng-show="!turnoCtrl.formularioVisible" style="margin-top: 10rem;">
+        <p class="alert alert-success">{{turnoCtrl.mensajeExito}} <a ui-sref="inicio">Volver al Inicio</a></p>
+    </div>
+</div>

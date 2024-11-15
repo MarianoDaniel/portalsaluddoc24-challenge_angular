@@ -1,0 +1,10 @@
+@import '../variables';
+
+.navbar-default{
+    background-color: $main_color;
+    padding:10px 0;
+
+    img{
+        margin-left: 20px;
+    }
+}

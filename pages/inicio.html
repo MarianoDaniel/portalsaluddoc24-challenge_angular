@@ -1,0 +1,11 @@
+<ng-include src="'../pages/partials/navbar.html'"></ng-include>
+<div class="container inicio">
+
+    <h2 class="text-center">{{inicioCtrl.titulo}}</h2>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+             <div ng-bind-html="inicioCtrl.contenido"></div>
+        </div>
+    </div>
+</div>
+<ng-include src="'../pages/partials/footer.html'"></ng-include>

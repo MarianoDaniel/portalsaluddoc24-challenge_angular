@@ -1,0 +1,27 @@
+{
+    "name": "mi-aplicacion-angular",
+    "version": "1.0.0",
+    "description": "Una aplicación AngularJS con servidor Node.js",
+    "main": "server.js",
+    "scripts": {
+        "start": "nodemon server.js --delay 1000ms",
+        "watch": "nodemon --watch . --exec 'npm run build && npm start' --event 'change,add,delete' --ext 'js,html,scss' --ignore public/",
+        "build": "node build.js"
+    },
+    "dependencies": {
+        "angular": "1.6.9",
+        "angular-ui-router": "^1.0.28",
+        "bootstrap": "^3.3.6",
+        "concat": "^1.0.3",
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "bootstrap-sass": "^3.3.7",                 
+        "clean-css": "^5.3.3",
+        "globby": "^11.1.0",
+        "ncp": "^2.0.0",
+        "node-sass": "^9.0.0",
+        "nodemon": "^2.0.14",
+        "sass": "^1.69.5"
+    }
+}
